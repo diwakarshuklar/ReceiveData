@@ -37,11 +37,10 @@ Only Android supported for now, we will try to support ios too very soon.
       compile project(':react-native-receive-data')
   	```
 
-# Setup for new Activity to open (Required)
-```
-1. create a file /android/app/src/main/java/com/[project_name]/receive/ReceiveActivity.java with content as bellow
+## Setup for new Activity to open (Required)
+1. create a file `/android/app/src/main/java/com/[project_name]/receive/ReceiveActivity.java` with content as bellow
 
-  package com.demo.receive; // Your package name here
+  ```package com.demo.receive; // Your package name here
 
   import com.facebook.react.ReactActivity;
 
@@ -51,9 +50,11 @@ Only Android supported for now, we will try to support ios too very soon.
           return "receive"; // this will be Component name to register using React Native
       }
   }
+  ```
 
-2. create a file /android/app/src/main/java/com/[project_name]/receive/ReceiveApplication with content as bellow
+2. create a file `/android/app/src/main/java/com/[project_name]/receive/ReceiveApplication` with content as bellow
 
+  ```
   package com.demo.receive; // Your package Name here
 
   import com.demo.BuildConfig; // Take from Your Package
@@ -92,9 +93,12 @@ Only Android supported for now, we will try to support ios too very soon.
         return mReactNativeHost;
     }
   }
+  ```
 
 3. Open AndroidManifest.xml and update 
-  <application>
+  
+    ```
+    <application>
     ...
     <activity android:name=".receive.ReceiveActivity" >
           <intent-filter>
@@ -103,8 +107,8 @@ Only Android supported for now, we will try to support ios too very soon.
               <data android:mimeType="application/pdf" />
           </intent-filter>
       </activity>
-  </application>
-```
+    </application>
+  ```
 
 ## Usage
 
