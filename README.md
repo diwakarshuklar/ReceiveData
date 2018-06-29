@@ -14,13 +14,13 @@ Only Android supported for now, we will try to support ios too very soon.
 
 ### Manual installation
 
-
+<!-- 
 #### iOS
 
 1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
 2. Go to `node_modules` ➜ `react-native-receive-data` and add `RNReceiveData.xcodeproj`
 3. In XCode, in the project navigator, select your project. Add `libRNReceiveData.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
-4. Run your project (`Cmd+R`)<
+4. Run your project (`Cmd+R`) -->
 
 #### Android
 
@@ -67,8 +67,5 @@ export default class App extends Component<Props> {
     );
   }
 }
-
-// TODO: What to do with the module?
-RNReceiveData;
 ```
   
