@@ -38,9 +38,11 @@ Only Android supported for now, we will try to support ios too very soon.
   	```
 
 ## Setup for new Activity to open (Required)
+
 1. create a file `/android/app/src/main/java/com/[project_name]/receive/ReceiveActivity.java` with content as bellow
 
-  ```package com.demo.receive; // Your package name here
+  ```java
+  package com.demo.receive; // Your package name here
 
   import com.facebook.react.ReactActivity;
 
@@ -54,7 +56,7 @@ Only Android supported for now, we will try to support ios too very soon.
 
 2. create a file `/android/app/src/main/java/com/[project_name]/receive/ReceiveApplication` with content as bellow
 
-  ```
+  ```java
   package com.demo.receive; // Your package Name here
 
   import com.demo.BuildConfig; // Take from Your Package
@@ -96,8 +98,7 @@ Only Android supported for now, we will try to support ios too very soon.
   ```
 
 3. Open AndroidManifest.xml and update 
-  
-    ```
+    ```xml
     <application>
     ...
     <activity android:name=".receive.ReceiveActivity" >
@@ -108,7 +109,7 @@ Only Android supported for now, we will try to support ios too very soon.
           </intent-filter>
       </activity>
     </application>
-  ```
+    ```
 
 ## Usage
 
