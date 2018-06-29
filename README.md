@@ -37,8 +37,90 @@ Only Android supported for now, we will try to support ios too very soon.
       compile project(':react-native-receive-data')
   	```
 
+# Setup for new Activity to open (Required)
+```
+1. create a file /android/app/src/main/java/com/[project_name]/receive/ReceiveActivity.java with content as bellow
+
+  package com.demo.receive; // Your package name here
+
+  import com.facebook.react.ReactActivity;
+
+  public class ReceiveActivity extends ReactActivity {
+      @Override
+      protected String getMainComponentName() {
+          return "receive"; // this will be Component name to register using React Native
+      }
+  }
+
+2. create a file /android/app/src/main/java/com/[project_name]/receive/ReceiveApplication with content as bellow
+
+  package com.demo.receive; // Your package Name here
+
+  import com.demo.BuildConfig; // Take from Your Package
+  import com.reactlibrary.RNReceiveDataPackage;
+
+  import android.app.Application;
+
+  import com.facebook.react.shell.MainReactPackage;
+  import com.facebook.react.ReactNativeHost;
+  import com.facebook.react.ReactApplication;
+  import com.facebook.react.ReactPackage;
+
+  import java.util.Arrays;
+  import java.util.List;
+
+
+  public class ReceiveApplication extends Application implements ReactApplication {
+    private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+      @Override
+      public boolean getUseDeveloperSupport() {
+        return BuildConfig.DEBUG;
+
+      }
+
+      @Override
+      protected List<ReactPackage> getPackages() {
+        return Arrays.<ReactPackage>asList(
+            new MainReactPackage(),
+            new RNReceiveDataPackage()
+        );
+      }
+    };
+
+    @Override
+    public ReactNativeHost getReactNativeHost() {
+        return mReactNativeHost;
+    }
+  }
+
+3. Open AndroidManifest.xml and update 
+  <application>
+    ...
+    <activity android:name=".receive.ReceiveActivity" >
+          <intent-filter>
+              <action android:name="android.intent.action.SEND" />
+              <category android:name="android.intent.category.DEFAULT" />
+              <data android:mimeType="application/pdf" />
+          </intent-filter>
+      </activity>
+  </application>
+```
 
 ## Usage
+
+index.js
+
+```javascript
+  import { AppRegistry } from 'react-native';
+  import App from './App';
+  import ReceiveData from './Receive';
+
+  AppRegistry.registerComponent('demo', () => App);
+  AppRegistry.registerComponent('receive', ()=> ReceiveData);
+```
+
+Recive.js
+
 ```javascript
 import React, { Component } from 'react';
 import {
@@ -60,7 +142,7 @@ export default class App extends Component<Props> {
   render() {
       const { type, uri } = this.state;
     return (
-      <View style={styles.container}>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Text>{type}</Text>
         <Text>{uri}</Text>
       </View>

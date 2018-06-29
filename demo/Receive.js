@@ -24,7 +24,7 @@ export default class App extends Component<Props> {
   render() {
       const { type, uri } = this.state;
     return (
-      <View style={styles.container}>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
         <Text>{type}</Text>
         <Text>{uri}</Text>
       </View>
