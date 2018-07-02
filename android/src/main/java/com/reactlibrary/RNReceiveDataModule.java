@@ -10,6 +10,8 @@ import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.Promise;
 
+import android.graphics.Bitmap;
+import java.io.InputStream;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -42,7 +44,7 @@ public class RNReceiveDataModule extends ReactContextBaseJavaModule {
 
   private WritableMap processIntent () {
     WritableMap map = Arguments.createMap();
-    String type = "", uri = "";
+    String type = "", value = "";
 
     Activity currentActivity = getCurrentActivity();
     if (currentActivity != null) {
@@ -51,11 +53,12 @@ public class RNReceiveDataModule extends ReactContextBaseJavaModule {
       type = intent.getType();
 
       if (Intent.ACTION_SEND.equals(action) && type != null) {
-        uri = getUri(intent); // Handle single pdf being sent
+        Uri uri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+        value = "file://" + RealPathUtil.getRealPathFromURI(currentActivity, uri); // Handle single pdf being sent
       } 
     }
     map.putString("type", type);
-    map.putString("uri", uri);
+    map.putString("uri", value);
     return map;
   }
 
