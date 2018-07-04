@@ -4,6 +4,9 @@
 ## Note
 Only Android supported for now, we will try to support ios too very soon.
 
+## Description
+It returns uri of shared file. You can use that uri to show the content or use the content (Using https://github.com/wkh237/react-native-fetch-blob)
+
 ## Getting started
 
 `$ npm install react-native-receive-data --save`
